@@ -1,124 +1,114 @@
 # Ball Balancing Robot
 
-![Controle](https://img.shields.io/badge/Controle-Robotnik-149ddd?style=for-the-badge) ![Visão computacional](https://img.shields.io/badge/Visão%20computacional-Robotnik-149ddd?style=for-the-badge) ![Robótica](https://img.shields.io/badge/Robótica-Robotnik-149ddd?style=for-the-badge) ![OpenCV](https://img.shields.io/badge/OpenCV-Robotnik-149ddd?style=for-the-badge) ![Servomotores](https://img.shields.io/badge/Servomotores-Robotnik-149ddd?style=for-the-badge)
+[![Ball Balancing Robot](https://github.com/GuilhermeRds1921/Ball-Balancing-Robot/blob/main/capa-mesa-equilibrio.png?raw=true)](https://github.com/GuilhermeRds1921/Ball-Balancing-Robot/blob/main/capa-mesa-equilibrio.png)
 
-> Mesa robótica para equilibrar uma bola usando visão computacional, controle e atuadores.
+Projeto de bancada robotica para equilibrar uma bola em uma mesa inclinavel usando visao computacional, sistemas de controle e dashboard web.
 
-<p align="center">
-  <img src="mesa-equilibrio.png" alt="Imagem de capa do projeto Ball Balancing Robot" width="400" />
-</p>
+Este repositorio foi organizado em duas partes principais:
 
-## Sumário
+* `backend/`: API em Python com FastAPI, processamento de imagem e controle do sistema.
+* `frontend/`: interface web em React para monitoramento e acionamento.
+* `docs/`: documentacao de arquitetura e operacao.
 
-- [Visão geral](#visão-geral)
-- [Objetivos](#objetivos)
-- [Principais recursos](#principais-recursos)
-- [Arquitetura do projeto](#arquitetura-do-projeto)
-- [Hardware](#hardware)
-- [Software](#software)
-- [Estrutura do repositório](#estrutura-do-repositório)
-- [Como usar](#como-usar)
-- [Aplicação em divulgação científica](#aplicação-em-divulgação-científica)
-- [Continuidade do projeto](#continuidade-do-projeto)
-- [Referências](#referências)
+Portfolio: [guilhermerds1921.github.io](https://guilhermerds1921.github.io/)
 
-## Visão geral
+## Objetivo
 
-A mesa de equilíbrio de bola é um protótipo de robótica e controle que busca manter uma bola em posição desejada por meio da leitura da posição e da atuação em uma plataforma inclinável. O projeto é útil para demonstrações de controle, sensores, processamento de imagem, atuadores e integração software-hardware.
+O objetivo e manter a bola no centro da mesa por meio de uma malha de controle fechada, usando:
 
-Este repositório faz parte da organização **Robotnik - DAINF-PB**, projeto de extensão do DAINF da UTFPR - Campus Pato Branco voltado à robótica, prototipagem e divulgação científica.
+* camera para detectar a bola;
+* processamento de imagem para obter a posicao;
+* algoritmo de controle para calcular a inclinacao ideal;
+* servomotores para ajustar a plataforma;
+* interface web para monitorar e ajustar parametros.
 
-## Objetivos
+## Estrutura do repositorio
 
-- Documentar a arquitetura geral da mesa de equilíbrio.
-- Registrar hardware, software, controle e lógica de atuação.
-- Facilitar futuras manutenções e melhorias do protótipo.
-- Servir como referência didática para conceitos de controle e robótica.
-
-## Principais recursos
-
-- Leitura da posição da bola.
-- Atuação em plataforma por servomotores ou mecanismo equivalente.
-- Aplicação de conceitos de controle em malha fechada.
-- Potencial integração com visão computacional e interface de monitoramento.
-
-## Arquitetura do projeto
-
-A arquitetura pode ser entendida em quatro camadas principais:
-
-| Camada | Função |
-|---|---|
-| Mecânica | Estrutura física, peças impressas em 3D, suportes e montagem. |
-| Eletrônica | Microcontroladores, sensores, atuadores, alimentação e conexões. |
-| Software embarcado | Código de controle, leitura de entradas, processamento e acionamento. |
-| Demonstração | Uso do protótipo em oficinas, feiras, escolas e eventos de divulgação. |
-
-## Hardware
-
-- Plataforma mecânica inclinável
-- Servomotores ou atuadores equivalentes
-- Câmera ou sensor para detecção da bola
-- Microcontrolador ou computador embarcado
-- Fonte de alimentação e estrutura de suporte
-
-## Software
-
-- Linguagem e ambiente conforme implementação do repositório
-- OpenCV ou biblioteca equivalente, se utilizada
-- Algoritmo de controle
-- Rotina de leitura, processamento e atuação
-
-## Estrutura do repositório
-
-- `README.md - documentação principal`
-- Arquivos de código e configuração conforme implementação do projeto
-
-## Como usar
-
-> Esta seção deve ser ajustada conforme a versão atual do código e dos arquivos do repositório.
-
-1. Clone o repositório:
-
-```bash
-git clone https://github.com/DAINF-PB-Robotnik/Ball-Balancing-Robot.git
-cd Ball-Balancing-Robot
+```text
+Ball-Balancing-Robot/
+├── backend/
+│   ├── camera.py
+│   ├── camera_pc.py
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── simulator.py
+│   └── vision.py
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── README.md
+│   └── .env.example
+├── docs/
+│   ├── architecture.md
+│   └── operation.md
+├── capa-mesa-equilibrio.png
+├── .gitignore
+├── README.md
+└── .git/
 ```
 
-2. Confira as pastas de código, peças, esquemáticos e documentação.
-3. Instale as dependências necessárias para o ambiente usado no projeto.
-4. Faça a montagem elétrica e mecânica seguindo as conexões documentadas.
-5. Carregue o código no microcontrolador ou execute o software principal.
-6. Teste por etapas antes de usar o protótipo completo.
+## Backend
 
-## Aplicação em divulgação científica
+O backend e responsavel por expor a API do sistema, receber frames da camera e atualizar a posicao da bola. Ele tambem recebe os ajustes de PID e disponibiliza a stream de video e dados de telemetria para a interface web.
 
-O projeto pode ser usado em atividades de extensão para apresentar conceitos de robótica e engenharia de forma visual e prática. Em eventos, oficinas e visitas técnicas, o protótipo ajuda a conectar assuntos como programação, eletrônica, sensores, impressão 3D, controle e resolução de problemas com uma demonstração concreta.
+### Requisitos
 
-## Continuidade do projeto
+* Python 3.10+
+* pip
+* OpenCV
+* FastAPI
 
-Sugestões para evolução:
+### Execucao
 
-- Atualizar a documentação com fotos reais da montagem.
-- Adicionar diagramas de ligação elétrica.
-- Registrar vídeos curtos de funcionamento.
-- Criar uma seção de problemas comuns e soluções.
-- Padronizar nomes de arquivos e dependências.
-- Adicionar instruções de segurança para alimentação, motores e partes móveis.
-- Criar uma versão em artigo técnico a partir do arquivo LaTeX deste pacote.
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
 
-## Referências
+## Frontend
 
-- Projetos didáticos de ball balancing robot](https://www.instructables.com/Ball-Balancing-Robot/) By aaedmusa
+O frontend e uma interface web em React para:
 
-## Organização
+* visualizar status do sistema;
+* acompanhar a posicao da bola;
+* ajustar parametros de controle;
+* enviar comandos para a rotina de equilibrio.
 
-**Robotnik - DAINF-PB**  
-Departamento Acadêmico de Informática - UTFPR, Campus Pato Branco.
+## Rede do Raspberry Pi
 
-Orientador: Vinicius Pegorini
-- Aluno: Anjelo
-- Aluno: Davi
-- Aluno: Diogo 
-- Aluno: Guilherme Rodrigues dos Santos
-- Aluno: Renan
+O projeto foi pensado para funcionar com o proprio Raspberry Pi 4 atuando como roteador Wi-Fi local. Dessa forma, o backend e o frontend ficam na mesma rede e podem ser acessados por celular ou notebook sem depender da internet ou de um roteador externo.
 
+A configuracao detalhada esta em [docs/networking.md](docs/networking.md).
+
+## Documentacao
+
+* [Arquitetura do sistema](docs/architecture.md)
+* [Operacao e testes](docs/operation.md)
+* [Rede Wi-Fi do Raspberry Pi](docs/networking.md)
+
+## Tecnologias
+
+* Python
+* FastAPI
+* OpenCV
+* React
+* JavaScript
+* Raspberry Pi
+* Visao computacional
+* Controle de mesa inclinavel
+
+## Observacoes
+
+Este projeto ainda e uma base de desenvolvimento e experimentacao, com a parte de visao e controle em evolucao. A estrutura foi organizada para facilitar a separacao entre o codigo do hardware/servidor e a interface do usuario.
+
+## Referencias
+
+* [Pagina do projeto no portfolio](https://guilhermerds1921.github.io/projects/ball-balancing-robot/)
+* [Galeria do projeto](https://guilhermerds1921.github.io/gallery/ball-balancing-robot/)
+* [Robotnik no portfolio](https://guilhermerds1921.github.io/projects/robotnik/)
+* [Instructables: Ball Balancing Robot](https://www.instructables.com/Ball-Balancing-Robot/)
