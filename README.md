@@ -10,8 +10,6 @@ Este repositorio foi organizado em duas partes principais:
 * `frontend/`: interface web em React para monitoramento e acionamento.
 * `docs/`: documentacao de arquitetura e operacao.
 
-Portfolio: [guilhermerds1921.github.io](https://guilhermerds1921.github.io/)
-
 ## Objetivo
 
 O objetivo e manter a bola no centro da mesa por meio de uma malha de controle fechada, usando:
@@ -108,7 +106,4 @@ Este projeto ainda e uma base de desenvolvimento e experimentacao, com a parte d
 
 ## Referencias
 
-* [Pagina do projeto no portfolio](https://guilhermerds1921.github.io/projects/ball-balancing-robot/)
-* [Galeria do projeto](https://guilhermerds1921.github.io/gallery/ball-balancing-robot/)
-* [Robotnik no portfolio](https://guilhermerds1921.github.io/projects/robotnik/)
 * [Instructables: Ball Balancing Robot](https://www.instructables.com/Ball-Balancing-Robot/)
